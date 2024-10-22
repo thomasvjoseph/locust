@@ -1,4 +1,4 @@
-name: 'Locust'
+name: 'Locust GitHub Action'
 description: 'Run Locust performance tests in your CI pipeline'
 author: 'Thomas Joseph'
 inputs:
