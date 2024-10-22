@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "locust-github-action"
+version = "0.1.0"
+description = "A GitHub Action for running Locust load tests."
+authors = ["thomas joseph"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+locust = "^2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

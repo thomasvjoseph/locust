@@ -1,0 +1,40 @@
+# Ignore Python cache files
+__pycache__
+*.pyc
+*.pyo
+
+# Ignore virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Ignore Poetry virtual environment directory (if not needed in the image)
+./.venv/
+
+# Ignore test coverage and reports
+.coverage
+coverage/
+
+# Ignore log files
+*.log
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore git-related files
+.git/
+.gitignore
+
+# Ignore node modules (if any JS dependencies exist)
+node_modules/
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Ignore temporary and backup files
+*.tmp
+*.bak
+*.swp

@@ -1,0 +1,60 @@
+name: 'Locust GitHub Action'
+description: 'Run Locust performance tests in your CI pipeline'
+author: 'Thomas Joseph'
+inputs:
+  LOCUSTFILE:
+    description: 'The locustfile you want to use to load test.'
+    required: false
+  REQUIREMENTS:
+    description: 'requirements.txt file you want to use to install 3rd party dependencies. Not required.'
+    required: false
+  URL:
+    description: 'URL to the site you want to load test. This is Required!'
+    required: true
+  USERS:
+    description: 'Number of Users to spawn. Defaults to 5.'
+    required: false
+    default: '5'
+  RATE:
+    description: 'Specify the hatch rate (number of users to spawn per second). Defaults to 5.'
+    required: false
+    default: '5'
+  RUNTIME:
+    description: 'Specify the run time for a test. Defaults to 10 seconds.'
+    required: false
+    default: '10s'
+  HEADLESS:
+    description: 'Run Locust in headless mode (no web UI). Defaults to true.'
+    required: false
+    default: 'true'
+  LOGLEVEL:
+    description: 'Specify the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL). Defaults to INFO.'
+    required: false
+    default: 'INFO'
+  MASTER:
+    description: 'Run as Locust master in distributed mode. Defaults to false.'
+    required: false
+    default: 'false'
+  WORKERS:
+    description: 'Number of worker nodes to run in distributed mode. Only applicable if MASTER is set to true. Defaults to 1.'
+    required: false
+    default: '1'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.LOCUSTFILE }}
+    - ${{ inputs.REQUIREMENTS }}
+    - ${{ inputs.URL }}
+    - ${{ inputs.USERS }}
+    - ${{ inputs.RATE }}
+    - ${{ inputs.RUNTIME }}
+    - ${{ inputs.HEADLESS }}
+    - ${{ inputs.LOGLEVEL }}
+    - ${{ inputs.MASTER }}
+    - ${{ inputs.WORKERS }}
+
+branding:
+  icon: 'activity'
+  color: 'green'
