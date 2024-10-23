@@ -27,4 +27,7 @@ cd "$(dirname "$requirements")"
 poetry install --no-root --verbose && rm -rf $POETRY_CACHE_DIR
 
 # Run Locust tests with provided options
-poetry run locust -f "$file" --headless -u "${INPUT_USERS:-5}" -r "${INPUT_RATE:-5}" --run-time "${INPUT_RUNTIME:-10s}" -H "$INPUT_URL" --loglevel "${INPUT_LOGLEVEL:-INFO}"
+poetry run locust -f "$file" --headless -u "${INPUT_USERS:-5}" -r "${INPUT_RATE:-5}" --run-time "${INPUT_RUNTIME:-10s}" -H "$INPUT_URL" --loglevel "${INPUT_LOGLEVEL:-INFO}" --html="$html_report"
+
+# Copy the HTML report to the GitHub workspace so it can be accessed after the job finishes
+cp "$html_report" /github/workspace/

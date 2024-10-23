@@ -6,7 +6,7 @@ inputs:
     description: 'The locustfile you want to use to load test.'
     required: false
   REQUIREMENTS:
-    description: 'requirements.txt file you want to use to install 3rd party dependencies. Not required.'
+    description: 'pyproject.toml file you want to use to install 3rd party dependencies. Not required.'
     required: false
   URL:
     description: 'URL to the site you want to load test. This is Required!'
@@ -39,6 +39,10 @@ inputs:
     description: 'Number of worker nodes to run in distributed mode. Only applicable if MASTER is set to true. Defaults to 1.'
     required: false
     default: '1'
+  html_report:
+    description: 'HTML report file name (e.g., example.html)'
+    required: false
+    default: 'example.html'
 
 runs:
   using: 'docker'
@@ -54,6 +58,7 @@ runs:
     - ${{ inputs.LOGLEVEL }}
     - ${{ inputs.MASTER }}
     - ${{ inputs.WORKERS }}
+    - ${{ inputs.html_report }}
 
 branding:
   icon: 'activity'
