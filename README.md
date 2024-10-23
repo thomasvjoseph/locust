@@ -1,6 +1,6 @@
 # Locust GitHub Action
 
-This GitHub Action allows you to run Locust performance tests in your CI/CD pipeline. You can easily configure it to load test your web applications using various parameters.
+This GitHub Action allows you to run Locust performance tests in your CI/CD pipeline. You can easily configure and run load tests on your web application and download the results in HTML format.
 
 ## Table of Contents
 
@@ -15,6 +15,46 @@ This GitHub Action allows you to run Locust performance tests in your CI/CD pipe
 - Install dependencies using Poetry.
 - Flexible configuration options for user count, hatch rate, and test duration.
 - Supports running Locust in headless mode.
+
+## Usage
+
+To use the Locust GitHub Action in your workflows, include it in your workflow YAML file:
+
+### Example Workflow
+
+```yaml
+name: Load Test
+
+on: [push]
+
+jobs:
+  locust-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Locust Performance Tests
+        uses: thomasvjoseph/locust@v1.1.6
+        with:
+          URL: https://yourwebsite.com   # Replace with your target URL
+          LOCUSTFILE: locustfile.py      # Path to your Locustfile
+          USERS: 2                       # Number of concurrent users
+          RATE: 1                        # Rate of user spawning
+          RUNTIME: 10s                   # Duration of the test
+          HEADLESS: true                 # Run Locust in headless mode
+          LOGLEVEL: DEBUG                # Set logging level
+          html_report: 'example.html'    # Name of the HTML report file
+
+      - name: Upload Locust Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: locust-report            # Name of the artifact
+          path: example.html             # Path to the generated HTML report
+          if-no-files-found: warn        # Warn if no files are found
+          retention-days: 1              # Retention period for the artifact
+
+```
 
 ## Inputs
 
@@ -31,34 +71,7 @@ This GitHub Action allows you to run Locust performance tests in your CI/CD pipe
 | `MASTER`       | Run as Locust master in distributed mode.                                                        | No       | `false`        | 
 | `WORKERS`      | Number of worker nodes to run in distributed mode (if MASTER is true).                           | No       | `1`            |
 
-## Usage
 
-To use the Locust GitHub Action in your workflows, include it in your workflow YAML file:
-
-```yaml
-name: Run Locust Tests
-
-on: [push]
-
-jobs:
-  locust:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run Locust Performance Tests
-        uses: thomasvjoseph/locust@v1.0.0
-        with:
-          URL: https://yourwebsite.com
-          LOCUSTFILE: locustfile.py
-          USERS: 20
-          RATE: 5
-          RUNTIME: 1m
-          HEADLESS: true
-          LOGLEVEL: DEBUG
-
-```
 
 ## License
 
