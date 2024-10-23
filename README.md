@@ -32,10 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Run Locust Performance Tests
-        uses: thomasvjoseph/locust@v1.1.6
+        uses: thomasvjoseph/locust@v1.1.7
         with:
           URL: https://yourwebsite.com   # Replace with your target URL
           LOCUSTFILE: locustfile.py      # Path to your Locustfile
