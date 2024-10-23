@@ -61,7 +61,7 @@ jobs:
 | Input          | Description                                                                                      | Required | Default        |
 |----------------|--------------------------------------------------------------------------------------------------|----------|----------------|
 | `LOCUSTFILE`   | The locustfile you want to use to load test. If not provided, a default locustfile will be used. | No       | `locustfile.py`|
-| `REQUIREMENTS` | (Not used with Poetry) requirements.txt file you want to use to install 3rd party dependencies.  | No       | N/A            |
+| `REQUIREMENTS` | pyproject.toml file you want to use to install 3rd party dependencies.                           | No       | N/A            |
 | `URL`          | URL to the site you want to load test.                                                           | Yes      | N/A            |
 | `USERS`        | Number of users to spawn.                                                                        | No       | `5`            |
 | `RATE`         | Hatch rate (number of users to spawn per second).                                                | No       | `5`            |
